@@ -1,0 +1,35 @@
+name: Minify JavaScript
+
+on:
+  push:
+    paths:
+      - 'scripts/**.js'
+      - '!scripts/**.min.js'
+
+jobs:
+  minify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          
+      - name: Install dependencies
+        run: npm install terser -g
+        
+      - name: Minify JavaScript files
+        run: |
+          for file in scripts/*.js; do
+            if [[ $file != *.min.js ]]; then
+              terser "$file" -o "${file%.js}.min.js"
+            fi
+          done
+          
+      - name: Commit minified files
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Minify JavaScript files"
+          file_pattern: scripts/*.min.js
