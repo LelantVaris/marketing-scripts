@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   };
   
-  // Step 2: Modify all links to chat.lindy.ai/signup to include the UTM parameter
+  // Step 2: Modify all links to domain.com/signup to include the UTM parameter
   const modifySignupLinks = () => {
     // Get all links on the page
     const allLinks = document.querySelectorAll('a');
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const href = link.getAttribute('href');
       
       // Check if the link is to the signup page
-      if (href && href.includes('https://chat.lindy.ai/signup')) {
+      if (href && href.includes('https://domain.com/signup')) {
         // Prepare the UTM parameter
         // Remove leading slash and encode the path
         const cleanPath = entryPath.replace(/^\//, '');
