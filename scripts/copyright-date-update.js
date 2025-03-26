@@ -1,1 +1,1 @@
-<script> document.getElementById("copyright-year").innerHTML = new Date().getFullYear(); </script>
+document.getElementById("copyright-year").innerHTML = new Date().getFullYear();
